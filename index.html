@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>纯文字界面带输入框示例</title>
+    <title>纯文字界面带输入框和按钮示例</title>
     <style>
         /* 你可以在这里添加一些基本的样式 */
         body {
@@ -35,16 +35,39 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <h1>欢迎来到纯文字界面带输入框示例页面</h1>
-    <p>这是一个简单的HTML页面，包含纯文字内容和一个输入框。</p>
-    <p>你可以在这里添加更多的段落和文本内容。</p>
+    <h1>欢迎来到纯文字界面带输入框和按钮示例页面</h1>
+    <p>这是一个简单的HTML页面，包含纯文字内容、一个输入框和一个按钮。</p>
     <div class="input-container">
         <label for="userInput">请输入一些文字:</label>
         <input type="text" id="userInput" name="userInput" placeholder="在这里输入...">
     </div>
-    <p>输入框下方可以继续添加更多内容。</p>
+    <div class="button-container">
+        <button onclick="alert('你点击了按钮！')">点击我</button>
+    </div>
+    <p>按钮下方可以继续添加更多内容。</p>
+
+    <!-- 你可以在这里添加JavaScript代码，但在这个示例中我们仅使用了内联的onclick事件 -->
 </body>
 </html>
