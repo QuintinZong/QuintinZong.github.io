@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Warning</title>
-<style>
-/* 新增动画样式 */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out;
-}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Video Player</title>
+    <style type="text/css">
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-.fade-in.active {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .scare {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
 
-.video-container {
-    margin-top: 30px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-</style>
+        video#video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        video#video::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+    </style>
 </head>
-<body>
-<div class="warning-container">
-    <div class="warning-sign">⚠️ WARNING ⚠️</div>
-    <div class="warning-text">
-        <div>FBI Warning</div>
-        <div>Are you sure to go to this website?</div>
-        <div>The website may make you feel uncomfortable.</div>
-    </div>
-    <div class="button-container">
-        <button class="warning-button sure-button" onclick="playRickRoll()">I'm sure</button>
-        <button class="warning-button not-sure-button" onclick="window.location.href='https://www.baidu.com'">I'm not sure</button>
-    </div>
-    
-    <!-- 新增视频容器 -->
-    <div class="video-container fade-in" id="rickRollVideo">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen style="display: none;"></iframe>
-    </div>
-</div>
 
-<script>
-function playRickRoll() {
-    const videoDiv = document.getElementById('rickRollVideo');
-    videoDiv.style.display = 'block'; // 显示视频容器
-    
-    // 添加动画类
-    videoDiv.classList.add('active');
-    
-    // 自动播放视频（需用户交互触发，此处通过点击按钮实现）
-    const iframe = videoDiv.querySelector('iframe');
-    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // 触发重新加载以播放
-}
-</script>
+<body>
+    <div class="scare">
+        <video id="video" class="video" src="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4" loop="loop"></video>
+    </div>
+    <script type="text/javascript">
+        const video = document.getElementById("video");
+        
+        function videoClick(event) {
+            if (event) event.preventDefault();
+            // if not fullscreen
+            const { documentElement } = document;
+            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
+            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+        }
+        
+        // Start playing the video automatically
+        video.play();
+        video.addEventListener("click", videoClick);
+    </script>
 </body>
 </html>
