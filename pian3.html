@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重要警告</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255,0,0,0.2) 0%, rgba(0,0,0,0.8) 70%);
+            z-index: -1;
+        }
+        
+        .warning-container {
+            max-width: 600px;
+            padding: 30px;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .warning-sign {
+            color: #ff0000;
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #ff0000, 0 0 10px #ff0000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .warning-text {
+            font-size: 24px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .warning-text div {
+            margin: 10px 0;
+        }
+        
+        .warning-text div:first-child {
+            font-weight: bold;
+            font-size: 28px;
+            color: #ff4444;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .warning-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .warning-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+        
+        .warning-button:hover::before {
+            left: 100%;
+        }
+        
+        .sure-button {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .sure-button:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.6);
+        }
+        
+        .not-sure-button {
+            background-color: #f44336;
+            color: white;
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+        
+        .not-sure-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 67, 54, 0.6);
+        }
+        
+        .warning-icon {
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .icon1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .icon2 {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-icon icon1">⚠️</div>
+    <div class="warning-icon icon2">⚠️</div>
+    
+    <div class="warning-container">
+        <div class="warning-sign">⚠️ FBI 警告 ⚠️</div>
+        <div class="warning-text">
+            <div>访问限制通知</div>
+            <div>您即将访问的网站内容可能包含:</div>
+            <div>· 令人不适的成人内容</div>
+            <div>· 非法或侵权信息</div>
+            <div>· 潜在的安全风险</div>
+        </div>
+        <div class="button-container">
+            <button class="warning-button sure-button" onclick="window.location.href='https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html'">
+                <span>我已知悉风险</span>
+                <span>继续访问</span>
+            </button>
+            <button class="warning-button not-sure-button" onclick="window.location.href='https://www.baidu.com'">
+                <span>取消访问</span>
+                <span>返回安全页</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
