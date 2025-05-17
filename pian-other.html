@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        .warning-container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        .warning-sign {
+            color: red;
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px red;
+        }
+        
+        .warning-text {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .warning-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .sure-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .sure-button:hover {
+            background-color: #45a049;
+        }
+        
+        .not-sure-button {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .not-sure-button:hover {
+            background-color: #d32f2f;
+        }
+        
+        #fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 9999;
+            display: none;
+        }
+        #fullscreen-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullscreen-video">
+        <video id="shock-video" autoplay>
+            <source src="/img/index.mp4" type="video/mp4">
+            您的浏览器不支持视频播放。
+        </video>
+    </div>
+    <div class="warning-container">
+        <div class="warning-sign">⚠️ WARNING ⚠️</div>
+        <div class="warning-text">
+            <div>FBI Warning</div>
+            <div>Are you sure to go to this website?</div>
+            <div>The website may make you feel uncomfortable.</div>
+        </div>
+        <div class="button-container">
+            <button class="warning-button sure-button" onclick="window.location.href='https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html'">I'm sure</button>
+            <button class="warning-button not-sure-button" onclick="showShockVideo()">I'm not sure</button>
+        </div>
+    </div>
+
+    <script>
+        function showShockVideo() {
+            const fullscreenVideo = document.getElementById('fullscreen-video');
+            const shockVideo = document.getElementById('shock-video');
+            
+            fullscreenVideo.style.display = 'block';
+            shockVideo.play();
+            
+            // 震荡效果
+            shockVideo.style.animation = 'shake 0.5s infinite';
+            
+            // 点击视频或按ESC键关闭
+            function closeVideo(e) {
+                if (e.type === 'keydown' && e.key !== 'Escape') return;
+                
+                fullscreenVideo.style.display = 'none';
+                shockVideo.pause();
+                shockVideo.currentTime = 0;
+                shockVideo.style.animation = 'none';
+                
+                document.removeEventListener('click', closeVideo);
+                document.removeEventListener('keydown', closeVideo);
+            }
+            
+            fullscreenVideo.addEventListener('click', closeVideo);
+            document.addEventListener('keydown', closeVideo);
+        }
+    </script>
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+        }
+    </style>
+</body>
+</html>
