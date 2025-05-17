@@ -1,102 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning - Confirmation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        danger: '#e53e3e',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
+    <title>FBI Warning</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 0 0 15px rgba(229, 62, 62, 0.7);
-            }
-            .btn-pulse {
-                animation: pulse 2s infinite;
-            }
-            .bg-noise {
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-                background-blend-mode: overlay;
-                background-size: 150px;
-            }
+        
+        .warning-container {
+            max-width: 600px;
+            padding: 20px;
         }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(229, 62, 62, 0);
-            }
+        
+        .warning-sign {
+            color: red;
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px red;
+        }
+        
+        .warning-text {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .warning-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .sure-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .sure-button:hover {
+            background-color: #45a049;
+        }
+        
+        .not-sure-button {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .not-sure-button:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
-<body class="bg-black min-h-screen flex flex-col items-center justify-center bg-noise overflow-hidden">
-    <!-- Animated Warning Sign -->
-    <div class="relative mb-12 text-center transform transition-all duration-500 hover:scale-105">
-        <div class="text-[clamp(12rem,30vw,20rem)] font-bold text-danger text-shadow">
-            <i class="fa-solid fa-triangle-exclamation"></i>
+<body>
+    <div class="warning-container">
+        <div class="warning-sign">⚠️ WARNING ⚠️</div>
+        <div class="warning-text">
+            <div>FBI Warning</div>
+            <div>Are you sure to go to this website?</div>
         </div>
-        <div class="absolute inset-0 flex items-center justify-center">
-            <h1 class="text-[clamp(3rem,8vw,5rem)] font-bold text-black tracking-widest transform -rotate-1">
-                WARNING
-            </h1>
-        </div>
-    </div>
-
-    <!-- Warning Text -->
-    <div class="text-center mb-16 max-w-md px-4">
-        <p class="text-gray-200 text-[clamp(1.2rem,3vw,1.8rem)] mb-8 leading-tight">
-            Are you sure to  go to this video web?
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html" class="btn-pulse bg-danger hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center">
-                <i class="fa-solid fa-check mr-2"></i> I'm sure
-            </a>
-            
-            <button onclick="window.close()" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center">
-                <i class="fa-solid fa-xmark mr-2"></i> I'm not sure
-            </button>
+        <div class="button-container">
+            <button class="warning-button sure-button" onclick="window.location.href='https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html'">I'm sure</button>
+            <button class="warning-button not-sure-button" onclick="window.close()">I'm not sure</button>
         </div>
     </div>
-
-    <script>
-        // Add subtle animation to the page elements
-        document.addEventListener('DOMContentLoaded', () => {
-            const warningIcon = document.querySelector('.fa-triangle-exclamation');
-            const warningText = document.querySelector('h1');
-            
-            // Small rotation animation for the warning sign
-            let rotation = 0;
-            setInterval(() => {
-                rotation = (rotation + 0.5) % 4;
-                warningIcon.style.transform = `rotate(${rotation}deg)`;
-            }, 100);
-            
-            // Add pulse effect to the warning text
-            setInterval(() => {
-                warningText.classList.toggle('text-shadow');
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
-    
