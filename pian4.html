@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="zh-CN">
+
+<head>
+    <meta name="robots" content="noarchive">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课本列表 | Msyark在线文档</title>
+    <!-- 只保留一个SweetAlert2 v11 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.min.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/css/bootstrap.min.css">
+    <!-- 删除以下重复引用 -->
+    <!-- <script src="https://fastly.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* PDF 查看器模态框 */
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1050;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-mask.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #2d2d2d;
+            border-radius: 0.75rem;
+            width: 85%;
+            height: 80vh;
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .modal-mask.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 1rem;
+            top: 0.5rem;
+            z-index: 1;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #adb5bd;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" aria-hidden="true">
+        <div class="row justify-content-center">
+            <img src="warning_100dp_EA3323_FILL0_wght400_GRAD0_opsz48.svg" alt="已认证的上传者" title="已认证的上传者" height="300"
+                width="300">
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-9 mx-auto my-5 input-card">
+                <div class="card">
+                    <div class="card-header bg-dark text-light">警告</div>
+                    <div class="card-header">接下来的内容可能不适合所有人，真的要继续吗？
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group my-2">
+                            <!-- 更新按钮调用方式 -->
+                            <button type="button" onclick="Jump()" class="form-control btn btn-success btn-block">
+                                继续
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF 查看器模态框 -->
+    <div class="modal-mask" id="pdfModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <iframe class="pdf-iframe" id="pdfFrame" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // 更新后的查看器函数
+        function viewer(fileName) {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfFrame');
+
+            // 构建动态URL
+            const baseUrl = 'https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html';
+            const encodedFile = encodeURIComponent(fileName);
+            iframe.src = `${baseUrl}?file=${encodedFile}`;
+
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+
+            const escHandler = (e) => {
+                if (e.key === 'Escape') closeModal();
+            };
+            document.addEventListener('keydown', escHandler);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('pdfModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.getElementById('pdfFrame').src = ''; // 清空iframe
+            }, 300);
+        }
+
+        // 点击遮罩层关闭
+        document.getElementById('pdfModal').addEventListener('click', function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        function Jumpurl(url) {
+            Swal.fire({
+                title: "提示",
+                text: "正在重定向，请稍后",
+                icon: "info"
+            });
+            Swal.showLoading();
+            window.location.href = url;
+        }
+
+        function Jump() {
+            swal({
+                title: "二次确认",
+                text: "是否确定跳转？",
+                icon: "warning",
+                buttons: true,
+                buttons: ["取消", "确定"],
+                dangerMode: true,
+            })
+                .then((willJump) => {
+                    if (willJump) {
+                        Swal.fire({
+                            title: "提示",
+                            text: "请查看以下页面",
+                            icon: "info"
+                        })
+                            .then((willJump) => {
+                                if (willJump) {
+                                    viewer();
+                                }
+                            });
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
