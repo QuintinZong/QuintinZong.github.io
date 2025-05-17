@@ -172,7 +172,7 @@
         <video id="video" class="video" src="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4" loop="loop" __idm_id__="122881"></video>
     </div>
     <script type="text/javascript">
-        var hostname = window.location.hostname;
+        var host = window.location.host;
         const video = document.getElementById("video");
         const overlay = document.getElementById("overlay");
         const declineButton = document.getElementById("decline-button");
@@ -230,7 +230,7 @@
         }
         console.log(browserRedirect())
         var a = browserRedirect();
-        document.getElementById("ip-address").innerHTML = hostname;
+        document.getElementById("ip-address").innerHTML = host;
         document.getElementById("system1").innerHTML = a;
         document.getElementById("system2").innerHTML = a;
         document.getElementById("system3").innerHTML = a;
