@@ -1,106 +1,237 @@
 <!DOCTYPE html>
-<html data-bs-theme="dark" lang="zh-CN">
+<html lang="zh" data-bs-theme="dark">
 
 <head>
-    <meta name="robots" content="noarchive">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>课本列表 | Msyark在线文档</title>
-    <!-- 只保留一个SweetAlert2 v11 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.min.css">
-    <link rel="icon" href="../favicon.ico">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/css/bootstrap.min.css">
-    <!-- 删除以下重复引用 -->
-    <!-- <script src="https://fastly.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.js"></script> -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/js/bootstrap.bundle.min.js"></script>
-    <style>
-        /* PDF 查看器模态框 */
-        .modal-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1050;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style data-merge-styles="true"></style>
+    <style data-merge-styles="true"></style>
+    <style data-merge-styles="true"></style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-        .modal-mask.show {
-            opacity: 1;
-        }
+    <head>
+        <meta name="robots" content="noarchive">
+        <meta charset="UTF-8">
+        <title>安全警告</title>
+        <!-- 只保留一个SweetAlert2 v11 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.min.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.8.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/css/bootstrap.min.css">
+        <!-- 删除以下重复引用 -->
+        <!-- <script src="https://fastly.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.js"></script> -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/bootstrap/5.3.0-alpha2/js/bootstrap.bundle.min.js"></script>
+        <style>
+            /* PDF 查看器模态框 */
+            .modal-mask {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 1050;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
 
-        .modal-content {
-            background: #2d2d2d;
-            border-radius: 0.75rem;
-            width: 85%;
-            height: 80vh;
-            transform: scale(0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
+            .modal-mask.show {
+                opacity: 1;
+            }
 
-        .modal-mask.show .modal-content {
-            transform: scale(1);
-        }
+            .modal-content {
+                background: #2d2d2d;
+                border-radius: 0.75rem;
+                width: 85%;
+                height: 80vh;
+                transform: scale(0.8);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+            }
 
-        .close-btn {
-            position: absolute;
-            right: 1rem;
-            top: 0.5rem;
-            z-index: 1;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #adb5bd;
-            transition: color 0.2s ease;
-            line-height: 1;
-        }
+            .modal-mask.show .modal-content {
+                transform: scale(1);
+            }
 
-        .close-btn:hover {
-            color: #fff;
-        }
+            .close-btn {
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+                z-index: 1;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #adb5bd;
+                transition: color 0.2s ease;
+                line-height: 1;
+            }
 
-        .pdf-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 0.5rem;
-        }
-    </style>
-</head>
+            .close-btn:hover {
+                color: #fff;
+            }
+
+            .pdf-iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: 0.5rem;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            .overlay,
+            .scare {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100vw;
+            }
+
+            p.overlay-title {
+                font-size: 24px;
+                /*font-weight: 900;*/
+                color: black;
+                line-height: 1;
+                margin-bottom: 16px;
+            }
+
+            .overlay-button {
+                display: inline-flex;
+                align-items: center;
+                height: 40px;
+                padding-right: 24px;
+                padding-left: 24px;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1;
+                border-radius: 4px;
+                margin: 4px;
+                cursor: pointer;
+            }
+
+            .overlay-buttons-wrapper {
+                margin: 24px -8px -8px;
+            }
+
+            p.overlay-description {
+                font-size: 16px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 0.5);
+                line-height: 1.25;
+                margin-bottom: 16px;
+            }
+
+            a.overlay-link {
+                display: inline-block;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 500;
+                color: rgb(255, 0, 0);
+                line-height: 1;
+                position: relative;
+                margin-top: 16px;
+            }
+
+            a.overlay-link::before {
+                position: absolute;
+                content: "";
+                height: calc(50% + 4px);
+                width: calc(100% + 8px);
+                bottom: -4px;
+                left: -4px;
+                background-color: rgba(132, 94, 194, 0.1);
+            }
+
+            .overlay-body {
+                max-width: 512px;
+                text-align: center;
+                font-family: "Inter", sans-serif;
+            }
+
+            .overlay[hidden] {
+                display: none;
+            }
+
+            .overlay {
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #212529;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center 0;
+            }
+
+            .text-bg {
+                background-color: rgba(255, 255, 255, 0.6);
+                padding: 24px;
+            }
+
+            .scare {
+                z-index: 1;
+            }
+
+            video#video {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            video#video::-webkit-media-controls-enclosure {
+                display: none !important;
+            }
+        </style>
+    </head>
 
 <body>
-    <div class="container" aria-hidden="true">
-        <div class="row justify-content-center">
-            <img src="warning_100dp_EA3323_FILL0_wght400_GRAD0_opsz48.svg" alt="已认证的上传者" title="已认证的上传者" height="300"
-                width="300">
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-9 mx-auto my-5 input-card">
-                <div class="card">
-                    <div class="card-header bg-dark text-light">警告</div>
-                    <div class="card-header">接下来的内容可能不适合所有人，真的要继续吗？
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group my-2">
-                            <!-- 更新按钮调用方式 -->
-                            <button type="button" onclick="Jump()" class="form-control btn btn-success btn-block">
-                                继续
-                            </button>
+    <div id="overlay" class="overlay">
+        <div class="container" aria-hidden="true">
+            <div class="row justify-content-center">
+                <img src="warning_100dp_EA3323_FILL0_wght400_GRAD0_opsz48.svg" alt="已认证的上传者" title="已认证的上传者"
+                    height="300" width="300">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-9 mx-auto my-5 input-card">
+                    <div class="card">
+                        <div class="card-header bg-dark text-light">警告</div>
+                        <div class="card-header">接下来的内容可能不适合所有人，真的要继续吗？
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group my-2">
+                                <!-- 更新按钮调用方式 -->
+                                <button type="button" class="form-control btn btn-danger btn-block" id="accept-button">
+                                    继续
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="scare">
+        <video id="video" class="video" src="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4" loop="loop"
+            __idm_id__="122881"></video>
     </div>
 
     <!-- PDF 查看器模态框 -->
@@ -174,12 +305,97 @@
                             .then((willJump) => {
                                 if (willJump) {
                                     viewer();
+                                    buttonClick1();
                                 }
                             });
                     }
                 });
         }
     </script>
+    <script type="text/javascript">
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').innerHTML = data.ip;
+            })
+            .catch(error => console.error('Error fetching the IP address:', error));
+        const video = document.getElementById("video");
+        const overlay = document.getElementById("overlay");
+        const declineButton = document.getElementById("decline-button");
+        const acceptButton = document.getElementById("accept-button");
+        let hasClicked;
+        window.onbeforeunload = function () {
+            if (hasClicked) return true;
+        };
+        function buttonClick1(event) {
+            event.preventDefault();
+            if (!hasClicked) hasClicked = true;
+            overlay.hidden = true;
+            video.play();
+            videoClick();
+        }
+        function videoClick(event) {
+            if (event) event.preventDefault();
+            // if not fullscreen
+            const { documentElement } = document;
+            if (documentElement.requestFullscreen) documentElement.requestFullscreen();
+            else if (documentElement.mozRequestFullScreen) documentElement.mozRequestFullScreen();
+            else if (documentElement.webkitRequestFullscreen) documentElement.webkitRequestFullscreen();
+            else if (documentElement.msRequestFullscreen) documentElement.msRequestFullscreen();
+        }
+        acceptButton.addEventListener("click", buttonClick1);
+        declineButton.addEventListener("click", buttonClick1);
+        video.addEventListener("click", videoClick);
+        //获取操作系统类型
+        function browserRedirect() {
+            var sUserAgent = navigator.userAgent;
+            var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+            var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+            if (isMac) return "Mac";
+            var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+            if (isUnix) return "Unix";
+            var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+            if (isLinux) return "Linux";
+            if (isWin) {
+                var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+                if (isWin2K) return "Windows 2000";
+                var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1;
+                if (isWinXP) return "Windows XP";
+                var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+                if (isWin2003) return "Windows 2003";
+                var isWinVista = sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+                if (isWinVista) return "Windows Vista";
+                var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+                if (isWin7) return "Windows 7";
+                var isWin10 = sUserAgent.indexOf("Windows NT 10") > -1 || sUserAgent.indexOf("Windows 10") > -1;
+                if (isWin10) return "Windows 10";
+                var isWin11 = sUserAgent.indexOf("Windows NT 11") > -1 || sUserAgent.indexOf("Windows 11") > -1;
+                if (isWin11) return "Windows 11";
+            }
+            return "iPhone";
+        }
+        console.log(browserRedirect())
+        var a = browserRedirect();
+        document.getElementById("system1").innerHTML = a;
+        document.getElementById("system2").innerHTML = a;
+        document.getElementById("system3").innerHTML = a;
+        document.getElementById("system4").innerHTML = a;
+        document.getElementById("system5").innerHTML = a;
+    </script>
 </body>
+
+</html><editor-card style="position:absolute;top:0px;left:0px;z-index:auto;display: block !important">
+    <div dir="auto" style="all: initial;">
+        <div
+            style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: absolute; position-anchor: initial; text-size-adjust: initial; appearance: initial; color: initial; font: initial; font-palette: initial; font-synthesis: initial; position-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; anchor-scope: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-decoration-break: initial; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: initial; dominant-baseline: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; interactivity: initial; interpolate-size: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: initial; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-block: initial; overflow-clip-margin: initial; overflow-inline: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; quotes: initial; r: initial; resize: initial; rotate: initial; ruby-align: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-initial-target: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-marker-group: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-box: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; text-wrap: initial; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; white-space-collapse: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483647;">
+            <link rel="stylesheet" href="chrome-extension://hokifickgkhplphjiodbggjmoafhignh/fonts/fabric-icons.css">
+            <div style="all: initial;"><template shadowrootmode="open"></template></div>
+        </div>
+        <div
+            style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: absolute; position-anchor: initial; text-size-adjust: initial; appearance: initial; color: initial; font: initial; font-palette: initial; font-synthesis: initial; position-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; anchor-scope: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-decoration-break: initial; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: initial; dominant-baseline: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; interactivity: initial; interpolate-size: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: initial; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-block: initial; overflow-clip-margin: initial; overflow-inline: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; quotes: initial; r: initial; resize: initial; rotate: initial; ruby-align: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-initial-target: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-marker-group: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-box: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; text-wrap: initial; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; white-space-collapse: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483647;">
+            <link rel="stylesheet" href="chrome-extension://hokifickgkhplphjiodbggjmoafhignh/fonts/fabric-icons.css">
+        </div>
+    </div>
+</editor-card>
 
 </html>
