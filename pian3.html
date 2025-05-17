@@ -1,115 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-            transition: background-color 1s ease;
-        }
-        
-        .content-container {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-            max-width: 800px;
-            padding: 20px;
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-height: 0;
-            overflow: hidden;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 20px;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .warning-text {
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-        
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .warning-button {
-            padding: 12px 24px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .sure-button {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        .sure-button:hover {
-            background-color: #45a049;
-        }
-        
-        .not-sure-button {
-            background-color: #f44336;
-            color: white;
-        }
-        
-        .not-sure-button:hover {
-            background-color: #d32f2f;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warning</title>
+<style>
+/* 新增动画样式 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.video-container {
+    margin-top: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+</style>
 </head>
 <body>
-    <div class="content-container" id="content">
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="warning-text">
-            <div>FBI Warning</div>
-            <div>Are you sure to go to this website?</div>
-        </div>
-        <div class="button-container">
-            <button class="warning-button sure-button" onclick="window.location.href='https://www.mps.gov.cn/n2253534/n2253543/c9257095/content.html'">I'm sure</button>
-            <button class="warning-button not-sure-button" onclick="window.close()">I'm not sure</button>
-        </div>
+<div class="warning-container">
+    <div class="warning-sign">⚠️ WARNING ⚠️</div>
+    <div class="warning-text">
+        <div>FBI Warning</div>
+        <div>Are you sure to go to this website?</div>
+        <div>The website may make you feel uncomfortable.</div>
     </div>
+    <div class="button-container">
+        <button class="warning-button sure-button" onclick="playRickRoll()">I'm sure</button>
+        <button class="warning-button not-sure-button" onclick="window.location.href='https://www.baidu.com'">I'm not sure</button>
+    </div>
+    
+    <!-- 新增视频容器 -->
+    <div class="video-container fade-in" id="rickRollVideo">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen style="display: none;"></iframe>
+    </div>
+</div>
 
-    <script>
-        // Trigger fade-in animation after a short delay
-        setTimeout(function() {
-            document.getElementById('content').style.opacity = '1';
-            document.getElementById('content').style.transform = 'translateY(0)';
-        }, 500);
-    </script>
+<script>
+function playRickRoll() {
+    const videoDiv = document.getElementById('rickRollVideo');
+    videoDiv.style.display = 'block'; // 显示视频容器
+    
+    // 添加动画类
+    videoDiv.classList.add('active');
+    
+    // 自动播放视频（需用户交互触发，此处通过点击按钮实现）
+    const iframe = videoDiv.querySelector('iframe');
+    iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // 触发重新加载以播放
+}
+</script>
 </body>
 </html>
